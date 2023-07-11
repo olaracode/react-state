@@ -9,3 +9,7 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
+
+.poker-card {
+  height: 500px;
+}
