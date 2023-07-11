@@ -1,69 +1,49 @@
-import React from "react";
-import Card from "./Card.jsx";
-import { Footer, Navbar } from "./Layout.jsx";
-import UserProfile from "./UserProfile.jsx";
-import Student from "./Student.jsx";
-//create your first component
+import React, { useState } from "react";
+import Counter from "./Counter";
+import ChangingSize from "./ChangingSize";
+// hooks son metodos para actualizar el dom virtual
+// usa estado
+// un valor va a ser cambiante, que tiene que actualizar el virtual dom cuando se modifique ese valor
 
 /**
- * Props, Proptypes
- * hooks
-https://picsum.photos/200/201 * eventos
+ *
+ * let [valor, funcionDeActualizacion] = useState(valorInicial)
+ * let [name, setName] = useState("Jose Carlos")
+ *
+ * const [img, setImg] = useState("https://lorem.picum./hjasdf;lkjasd")
+ *
  */
 
 const Home = () => {
-  const user = {
-    name: "Jose Carlos",
-    description: "Una descripcion",
-    username: "jpermo07",
-  };
-  const secondUser = {
-    name: "Jose Morrone",
-    description: "Un crack en react",
-    username: "jmorrone",
-  };
-  return (
-    <>
-      <Navbar />
-      <div className="d-flex justify-content-center my-5">
-        <div className="w-75">
-          <Student
-            name={"Jose Carlos"}
-            profile={{
-              description: "Descripcion random",
-              githubUser: "usuario de github",
-              calificacion: 10,
-            }}
-          />
-          <hr />
+  const pageTitle = "El titulo de mi pagina";
+  // let counter = 0;
+  // useState()
+  const [theme, setTheme] = useState("light");
 
-          <UserProfile
-            name={user.name}
-            description={user.description}
-            username={user.username}
-          />
-          <Card
-            title="Mi titulo"
-            content="Mi otro contenido"
-            price={10}
-            src={"https://picsum.photos/200/201"}
-          />
-          <hr />
-          <UserProfile
-            name={secondUser.name}
-            description={secondUser.description}
-            username={secondUser.username}
-          />
-          <Card
-            title="Mi titulo"
-            content="Mi otro contenido"
-            price={10}
-            src={"https://picsum.photos/200/201"}
-          />
-        </div>
-      </div>
-      <Footer />
-    </>
+  const switchTheme = () => {
+    if (theme === "light") {
+      setTheme("dark");
+      return;
+    }
+    setTheme("light");
+  };
+
+  return (
+    <div
+      className={
+        theme === "light" ? "container" : "bg-dark text-white container"
+      }
+    >
+      <h1>{pageTitle}</h1>
+      <button onClick={switchTheme}>
+        <i class="fa-solid fa-moon"></i>
+      </button>
+      <hr />
+      <p>Componente counter</p>
+      <Counter />
+      <hr />
+      <ChangingSize />
+    </div>
   );
 };
 
